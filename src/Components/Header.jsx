@@ -11,7 +11,6 @@ const Header = (props) => {
         }}
       >
         Cart
-        <span className=" bg-blue-800 text-white p-2 rounded-md ">0</span>
       </h1>
     </div>
   );

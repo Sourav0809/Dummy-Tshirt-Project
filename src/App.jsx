@@ -5,6 +5,7 @@ import ProductsContainer from "./Components/ProductsContainer";
 import axios from "axios";
 import productContext from "./Components/Store/productContext";
 import Cart from "./Components/Cart";
+import CartContainer from "./Components/CartContainer";
 const App = () => {
   const ProductContext = useContext(productContext);
   const [viewCart, setViewCart] = useState(false);
@@ -35,7 +36,7 @@ const App = () => {
 
   return (
     <>
-      {viewCart && <Cart hideCartHandeler={hideCartHandeler} />}
+      {viewCart && <CartContainer hideCartHandeler={hideCartHandeler} />}
       <Header setViewCartHandeler={setViewCartHandeler} />
       <AddProductsForm />
       <ProductsContainer />

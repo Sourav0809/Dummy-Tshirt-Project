@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import productContext from "./Store/productContext";
 import axios from "axios";
+import cartContext from "./Store/cartContext";
 
 /* eslint-disable react/prop-types */
 const Products = (props) => {
   const productCtx = useContext(productContext);
+  const cartCtx = useContext(cartContext);
 
   // when user buy medium size
   const buySmallSizeHandeler = () => {
@@ -57,6 +59,7 @@ const Products = (props) => {
       }
     };
     updateServer();
+    cartCtx.addToCart(purchasedItem);
   };
 
   // when user buy medium size

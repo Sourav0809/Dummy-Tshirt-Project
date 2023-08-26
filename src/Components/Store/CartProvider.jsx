@@ -1,12 +1,27 @@
 import { useState } from "react";
 import cartContext from "./cartContext";
+import axios from "axios";
 
 const CartProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const addToCart = (newItems) => {
-    setCartItems((prev) => {
-      return [...prev, newItems];
-    });
+    const upadteIntoServer = async (newItems) => {
+      try {
+        const updateServer = await axios.post(
+          `https://dummy-tshirt-project-default-rtdb.asia-southeast1.firebasedatabase.app/Cart.json`,
+          newItems
+        );
+
+        console.log(updateServer);
+
+        setCartItems((prev) => {
+          return [...prev, newItems];
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    upadteIntoServer(newItems);
   };
 
   const cartProviderValues = {

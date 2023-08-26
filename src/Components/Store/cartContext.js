@@ -1,5 +1,4 @@
 import React from 'react'
-
 const cartContext = React.createContext(
     {
         cartItems: [],
@@ -8,5 +7,4 @@ const cartContext = React.createContext(
     }
 )
 
-
-export default cartContext;
+export default cartContext

@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
-import cartContext from "./Store/cartContext";
+import productContext from "./Store/productContext";
 const AddProductsForm = () => {
-  const cartCtx = useContext(cartContext);
+  const cartCtx = useContext(productContext);
   const [productName, setProductName] = useState("");
   const [productText, setProductText] = useState("");
   const [productPrice, setProductPrice] = useState("");
-  const [smallSizeQuantity, setSmallSizeQuantity] = useState(0);
-  const [mediumSizeQuantity, setMediumSizeQuantity] = useState(0);
-  const [largeSizeQuantity, setLargeSizeQuantity] = useState(0);
+  const [smallSizeQuantity, setSmallSizeQuantity] = useState("");
+  const [mediumSizeQuantity, setMediumSizeQuantity] = useState("");
+  const [largeSizeQuantity, setLargeSizeQuantity] = useState("");
 
   const onProductNameChange = (e) => {
     setProductName(e.target.value);
@@ -41,9 +41,14 @@ const AddProductsForm = () => {
       largeSizeQuantity: largeSizeQuantity,
     };
 
-    console.log(submitedProduct);
+    cartCtx.addToProductList(submitedProduct);
 
-    cartCtx.addToCart(submitedProduct);
+    setProductName("");
+    setProductText("");
+    setProductPrice("");
+    setSmallSizeQuantity("");
+    setMediumSizeQuantity("");
+    setLargeSizeQuantity("");
   };
 
   return (
@@ -59,6 +64,7 @@ const AddProductsForm = () => {
             placeholder="Enter Product Name "
             className=" text-black"
             onChange={onProductNameChange}
+            value={productName}
           />
         </div>
         <div className=" flex justify-center items-center gap-2">
@@ -68,6 +74,7 @@ const AddProductsForm = () => {
             placeholder="Enter Product Des.. "
             className=" text-black"
             onChange={onProductTextChange}
+            value={productText}
           />
         </div>
         <div className=" flex justify-center items-center gap-2">
@@ -77,6 +84,7 @@ const AddProductsForm = () => {
             placeholder="Enter Product Price "
             className=" text-black"
             onChange={onProductPriceChange}
+            value={productPrice}
           />
         </div>
       </div>
@@ -89,18 +97,21 @@ const AddProductsForm = () => {
             type="number"
             className=" text-black w-[16%]"
             onChange={smallQunatityChange}
+            value={smallSizeQuantity}
           />
           <label htmlFor=" Quantity size">M:</label>
           <input
             type="number"
             className=" text-black w-[16%]"
             onChange={mediumQunatityChange}
+            value={mediumSizeQuantity}
           />
           <label htmlFor=" Quantity size">L:</label>
           <input
             type="number"
             className=" text-black w-[16%]"
             onChange={largeQunatityChange}
+            value={largeSizeQuantity}
           />
           <button className=" bg-white text-black font-semibold p-2 ">
             Add Product

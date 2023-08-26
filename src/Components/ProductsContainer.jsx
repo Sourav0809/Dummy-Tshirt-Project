@@ -1,16 +1,18 @@
 import { useContext } from "react";
 import Products from "./Products";
-import cartContext from "./Store/cartContext";
+import cartContext from "./Store/productContext";
 import Card from "./UI/Card";
 const ProductsContainer = () => {
-  const { cartItems } = useContext(cartContext);
+  const { products } = useContext(cartContext);
+
   return (
     <Card>
-      {cartItems.map((item) => {
+      {products.map((item) => {
         return (
           <Products
             key={item.productId}
             productName={item.productName}
+            productText={item.productText}
             productPrice={item.productPrice}
             productId={item.productId}
             smallSizeQuantity={item.smallSizeQuantity}
